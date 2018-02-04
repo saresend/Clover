@@ -61,7 +61,21 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
         if(cell == nil) {
             cell = ArticleCollectionViewCell()
         }
-        cell?.TitleLabel.text = "Testing"
+        cell?.TitleLabel.text = "Some quirky title that goes on forever"
+        cell?.layer.cornerRadius = 5
+        cell?.heart_icon.image = cell?.heart_icon.image?.tinted(with: UIColor.red)
+        
+        cell?.platform_banner.image = cell?.platform_banner.image?.tinted(with: UIColor.orange)
         return cell!
+    }
+}
+extension UIImage {
+    func tinted(with color: UIColor) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        color.set()
+        withRenderingMode(.alwaysTemplate)
+            .draw(in: CGRect(origin: .zero, size: size))
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
 }
