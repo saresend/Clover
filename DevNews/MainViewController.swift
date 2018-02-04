@@ -12,6 +12,8 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var ArticleCollectionView: UICollectionView!
     
+    var refreshController = UIRefreshControl()
+    
     var gradient_layer = CAGradientLayer()
     
     override func viewDidLoad() {
@@ -29,7 +31,19 @@ class MainViewController: UIViewController {
          */
         ArticleCollectionView.dataSource = self
         ArticleCollectionView.delegate = self
+        ArticleCollectionView.refreshControl = refreshController
+        ArticleCollectionView.alwaysBounceVertical = true
+        self.refreshController.addTarget(self, action: #selector(refresh_called), for: .valueChanged)
         
+    }
+    
+    @objc func refresh_called() {
+        refreshController.beginRefreshing()
+    
+        for i in 0...100000  {
+            //
+        }
+        refreshController.endRefreshing()
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,8 +76,13 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
             cell = ArticleCollectionViewCell()
         }
         cell?.TitleLabel.text = "Some quirky title that goes on forever"
-        cell?.layer.cornerRadius = 5
+        cell?.layer.cornerRadius = 10
         cell?.heart_icon.image = cell?.heart_icon.image?.tinted(with: UIColor.red)
+        cell?.clipsToBounds = false
+        cell?.layer.shadowOffset = CGSize(width: 2, height: 2)
+        cell?.layer.shadowOpacity = 0.4
+
+        cell?.layer.shadowColor = UIColor.black.cgColor;
         
         cell?.platform_banner.image = cell?.platform_banner.image?.tinted(with: UIColor.orange)
         return cell!
