@@ -114,7 +114,7 @@
                                     <constraint firstAttribute="height" constant="20" id="ohV-Fb-Dcd"/>
                                 </constraints>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="X" image="sir_hamburg">
+                                <state key="normal" title="X">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -255,6 +255,5 @@
         <image name="banner" width="50" height="50"/>
         <image name="ferris" width="600" height="400"/>
         <image name="heart" width="50" height="50"/>
-        <image name="sir_hamburg" width="52" height="52"/>
     </resources>
 </document>
