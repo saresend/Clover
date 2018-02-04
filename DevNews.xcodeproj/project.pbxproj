@@ -15,6 +15,7 @@
 		40FC2BF5202767210008290F /* DevNewsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FC2BF4202767210008290F /* DevNewsUITests.swift */; };
 		40FC2C00202769BC0008290F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FC2BFF202769BC0008290F /* GradientView.swift */; };
 		40FC2C02202779860008290F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FC2C01202779860008290F /* MainViewController.swift */; };
+		40FC2C042027973B0008290F /* ArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FC2C032027973B0008290F /* ArticleCollectionViewCell.swift */; };
 		B13D6C1C6BF81F7FB04916C6 /* Pods_DevNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBAF2CF81968315AA4FCF506 /* Pods_DevNews.framework */; };
 		E9B661751BF341292AD3D0B9 /* Pods_DevNewsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4593598CDE34ECF2E7939235 /* Pods_DevNewsUITests.framework */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		40FC2BF6202767210008290F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40FC2BFF202769BC0008290F /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		40FC2C01202779860008290F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		40FC2C032027973B0008290F /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
 		4593598CDE34ECF2E7939235 /* Pods_DevNewsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DevNewsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7450016E950B9FA02DB7335B /* Pods-DevNewsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevNewsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DevNewsUITests/Pods-DevNewsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		87780BA8926F1E1CC566E6C9 /* Pods-DevNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevNews.release.xcconfig"; path = "Pods/Target Support Files/Pods-DevNews/Pods-DevNews.release.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				40FC2BE1202767210008290F /* ViewController.swift */,
 				40FC2BE3202767210008290F /* Main.storyboard */,
 				40FC2C01202779860008290F /* MainViewController.swift */,
+				40FC2C032027973B0008290F /* ArticleCollectionViewCell.swift */,
 				40FC2BFF202769BC0008290F /* GradientView.swift */,
 				40FC2BE6202767210008290F /* Assets.xcassets */,
 				40FC2BE8202767210008290F /* LaunchScreen.storyboard */,
@@ -338,6 +341,7 @@
 			files = (
 				40FC2BE2202767210008290F /* ViewController.swift in Sources */,
 				40FC2BE0202767210008290F /* AppDelegate.swift in Sources */,
+				40FC2C042027973B0008290F /* ArticleCollectionViewCell.swift in Sources */,
 				40FC2C00202769BC0008290F /* GradientView.swift in Sources */,
 				40FC2C02202779860008290F /* MainViewController.swift in Sources */,
 			);

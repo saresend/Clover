@@ -9,7 +9,7 @@
 import UIKit
 import TransitionButton
 
-class ViewController: UIViewController {
+class ViewController: UIViewController  {
     
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -18,23 +18,43 @@ class ViewController: UIViewController {
     
     var gradient_layer =  CAGradientLayer()
     var button : TransitionButton?  // please use Autolayout in real project
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        button = TransitionButton(frame: CGRect(x: passwordTextField.frame.minX , y: passwordTextField.frame.maxY + 50, width: passwordTextField.frame.width, height: 60))
-       
-        self.view.addSubview(button!)
         
+        /*
+         * Super cool button initialization which I was too lazy to do myself
+         */
+        button = TransitionButton(frame: CGRect(x: passwordTextField.frame.minX , y: passwordTextField.frame.maxY + 50, width: passwordTextField.frame.width, height: 60))
+        self.view.addSubview(button!)
         button!.backgroundColor = UIColor(hex: 0xe69884)
         button!.setTitle("Log In", for: .normal)
         button!.cornerRadius = 20
         button!.spinnerColor = .white
         button!.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
         
+        
+        
+        /*
+         * Initialization for Gradient Background Layer
+         */
         gradient_layer.colors =   [ UIColor(hex: 0xF8A05A).cgColor, UIColor(hex: 0xF4736A).cgColor]
         gradient_layer.frame = self.view.bounds
         self.view.layer.sublayers?.insert(gradient_layer, at: 0)
         
+        
+        /*
+         * Initialize For Hiding Keyboard
+         */
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector((tapBlurButton)))
+        
+        self.view.addGestureRecognizer(tapGesture)
+        
+        
+        /*
+         * Below is initialization logic for the borders of the email and password text fields
+         */
         let bottomLine = CALayer()
         
         bottomLine.frame = CGRect(x: 0.0, y: emailTextField.frame.height - 1, width: emailTextField.frame.width, height: 1.0)
@@ -43,7 +63,6 @@ class ViewController: UIViewController {
         emailTextField.layer.addSublayer(bottomLine)
         emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
                                                                   attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
-        
         let bottomLine2 = CALayer()
         
         bottomLine2.frame = CGRect(x: 0.0, y: passwordTextField.frame.height - 1, width: passwordTextField.frame.width, height: 1.0)
@@ -54,10 +73,11 @@ class ViewController: UIViewController {
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
                                                                       attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
     }
-
-    @objc func anywhere_tapped() {
-        print("It's being called")
-        resignFirstResponder()
+    
+    // Trying to resign keyboard on tap
+    @objc func tapBlurButton() {
+        print("Screen tapped")
+        self.view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
