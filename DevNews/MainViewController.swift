@@ -40,7 +40,7 @@ class MainViewController: UIViewController {
     @objc func refresh_called() {
         refreshController.beginRefreshing()
     
-        for i in 0...100000  {
+        for _ in 0...100000  {
             //
         }
         refreshController.endRefreshing()

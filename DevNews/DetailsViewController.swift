@@ -12,7 +12,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var TopicCollectionView: UICollectionView!
     
     
-    var topics = ["BlockChain", "AI", "Frontend", "Backend", "Rust" ]
+    var topics = ["BlockChain", "AI", "Frontend", "Backend", "Rust", "Add Topic"]
     var gradient_layer = CAGradientLayer()
 
     @IBAction func close_clicked(_ sender: Any) {
@@ -61,8 +61,30 @@ extension DetailsViewController : UICollectionViewDelegate, UICollectionViewData
         return topics.count
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //Lol No Idea tbh 
+        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "setting", for: indexPath) as? SettingsCollectionViewCell
+        if(cell == nil) {
+            cell = SettingsCollectionViewCell()
+        }
+        
+        
+        
+        cell?.title_label.text = topics[indexPath.row]
+        print(topics[indexPath.row])
+        print(indexPath)
+        cell?.layer.cornerRadius = 10
+        cell?.layer.borderWidth = 1
+        cell?.layer.borderColor = UIColor.white.cgColor
+        
+
+        cell?.clipsToBounds = false
+        cell?.layer.shadowOpacity = 0.6
+        cell?.layer.shadowOffset = CGSize(width: 2, height: 2)
+        cell?.layer.shadowColor = UIColor.black.cgColor
+        
+        return cell!
     }
     
     
