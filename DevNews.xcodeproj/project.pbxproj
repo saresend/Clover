@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		407E3752202800600026429E /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407E3751202800600026429E /* DetailsViewController.swift */; };
 		40FC2BE0202767210008290F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FC2BDF202767210008290F /* AppDelegate.swift */; };
 		40FC2BE2202767210008290F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FC2BE1202767210008290F /* ViewController.swift */; };
 		40FC2BE5202767210008290F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40FC2BE3202767210008290F /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		407E3751202800600026429E /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		40FC2BDC202767210008290F /* DevNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40FC2BDF202767210008290F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40FC2BE1202767210008290F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				40FC2BDF202767210008290F /* AppDelegate.swift */,
 				40FC2BE1202767210008290F /* ViewController.swift */,
 				40FC2BE3202767210008290F /* Main.storyboard */,
+				407E3751202800600026429E /* DetailsViewController.swift */,
 				40FC2C01202779860008290F /* MainViewController.swift */,
 				40FC2C032027973B0008290F /* ArticleCollectionViewCell.swift */,
 				40FC2BFF202769BC0008290F /* GradientView.swift */,
@@ -344,6 +347,7 @@
 				40FC2C042027973B0008290F /* ArticleCollectionViewCell.swift in Sources */,
 				40FC2C00202769BC0008290F /* GradientView.swift in Sources */,
 				40FC2C02202779860008290F /* MainViewController.swift in Sources */,
+				407E3752202800600026429E /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

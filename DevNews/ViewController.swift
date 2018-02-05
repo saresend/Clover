@@ -26,7 +26,7 @@ class ViewController: UIViewController  {
         /*
          * Super cool button initialization which I was too lazy to do myself
          */
-        button = TransitionButton(frame: CGRect(x: passwordTextField.frame.minX , y: passwordTextField.frame.maxY + 50, width: passwordTextField.frame.width, height: 60))
+        button = TransitionButton(frame: CGRect(x: passwordTextField.frame.minX , y: passwordTextField.frame.maxY + 80, width: passwordTextField.frame.width, height: 60))
         self.view.addSubview(button!)
         button!.backgroundColor = UIColor(hex: 0xe69884)
         button!.setTitle("Log In", for: .normal)
