@@ -12,7 +12,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var TopicCollectionView: UICollectionView!
     
     
-    var topics = ["BlockChain", "AI", "Frontend", "Backend", "Rust", "Add Topic"]
+    var topics = ["Random", "Keywords", "Which", "Should", "Be", "Terms", "Add Topic"]
     var gradient_layer = CAGradientLayer()
 
     @IBAction func close_clicked(_ sender: Any) {
@@ -53,10 +53,11 @@ class DetailsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
 
 }
 
-extension DetailsViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+extension DetailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return topics.count
     }
@@ -78,13 +79,66 @@ extension DetailsViewController : UICollectionViewDelegate, UICollectionViewData
         cell?.layer.borderWidth = 1
         cell?.layer.borderColor = UIColor.white.cgColor
         
-
+        
+        
         cell?.clipsToBounds = false
+        cell?.layer.backgroundColor = UIColor.clear.cgColor
+        
+        if(topics[indexPath.row] == "Add Topic") {
+            print("We here")
+
+            cell?.backgroundView?.layer.opacity = 0.3
+            cell?.backgroundView?.layer.backgroundColor = UIColor.white.cgColor
+        }
         cell?.layer.shadowOpacity = 0.6
         cell?.layer.shadowOffset = CGSize(width: 2, height: 2)
         cell?.layer.shadowColor = UIColor.black.cgColor
         
         return cell!
+    }
+}
+
+extension DetailsViewController : UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath) as! SettingsCollectionViewCell
+        let keyword = cell.title_label.text!
+        if(keyword != "Add Topic") {
+            let alert = UIAlertController(title: "Would you like to delete " + keyword + "?" , message: "", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                switch action.style{
+                case .default:
+                    print("default")
+                    
+                case .cancel:
+                    print("cancel")
+                    
+                case .destructive:
+                    print("destructive")
+                    
+                    
+                }}))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+                switch action.style{
+                case .default:
+                    print("default")
+                    
+                case .cancel:
+                    print("cancel")
+                    
+                case .destructive:
+                    print("destructive")
+                    
+                    
+                }}))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        else {
+            print("User wants to add a topic")
+            performSegue(withIdentifier: "AddTopic", sender: self)
+        }
     }
     
     

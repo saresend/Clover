@@ -10,8 +10,6 @@ import UIKit
 
 class SettingsCollectionViewCell: UICollectionViewCell {
     
-   
-    
     @IBOutlet weak var title_label: UILabel!
     
 }

@@ -29,7 +29,7 @@ class ViewController: UIViewController  {
         button = TransitionButton(frame: CGRect(x: passwordTextField.frame.minX , y: passwordTextField.frame.maxY + 80, width: passwordTextField.frame.width, height: 60))
         self.view.addSubview(button!)
         button!.backgroundColor = UIColor(hex: 0xe69884)
-        button!.setTitle("Log In", for: .normal)
+        button!.setTitle("Log In or Sign Up", for: .normal)
         button!.cornerRadius = 20
         button!.spinnerColor = .white
         button!.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
