@@ -7,20 +7,38 @@
 //
 
 import UIKit
+import TransitionButton
 
 class AddTopicViewController: UIViewController {
     
+    @IBOutlet weak var priority_label: UILabel!
+    @IBOutlet weak var PrioritySlider: UISlider!
     var gradient_layer = CAGradientLayer()
-
+    var button : TransitionButton?  // please use Autolayout in real project
     @IBOutlet weak var AddTopicField: UITextField!
     @IBAction func Back_Tapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func value_updated(_ sender: UISlider) {
+        print(Int(100 * sender.value))
+        priority_label.text = "Topic Priority: " + String(Int(100 * sender.value))
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        /*
+         * AddTopic Button
+         */
+        button = TransitionButton(frame: CGRect(x: PrioritySlider.frame.minX , y: PrioritySlider.frame.maxY + 80, width: PrioritySlider.frame.width, height: 60))
+        self.view.addSubview(button!)
+        button!.backgroundColor = UIColor(hex: 0xe69884)
+        button!.setTitle("Add Topic", for: .normal)
+        button!.cornerRadius = 20
+        button!.spinnerColor = .white
+        button!.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
         
         /*
          * AddTopicField UI Config
@@ -41,6 +59,26 @@ class AddTopicViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    @objc func buttonAction(_ button: TransitionButton) {
+        button.startAnimation() // 2: Then start the animation when the user tap the button
+        let qualityOfServiceClass = DispatchQoS.QoSClass.background
+        let backgroundQueue = DispatchQueue.global(qos: qualityOfServiceClass)
+        backgroundQueue.async(execute: {
+            
+            sleep(3) // 3: Do your networking task or background work here.
+            
+            DispatchQueue.main.async(execute: { () -> Void in
+                // 4: Stop the animation, here you have three options for the `animationStyle` property:
+                // .expand: useful when the task has been compeletd successfully and you want to expand the button and transit to another view controller in the completion callback
+                // .shake: when you want to reflect to the user that the task did not complete successfly
+                // .normal
+                button.stopAnimation(animationStyle: .expand, completion: {
+                    self.navigationController?.popViewController(animated: false)
+                    
+                })
+            })
+        })
     }
     
 

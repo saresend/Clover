@@ -387,6 +387,10 @@
                             </textField>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2tc-dI-f7B">
                                 <rect key="frame" x="37" y="396" width="324" height="31"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="value_updated:" destination="OHE-ma-Bgl" eventType="valueChanged" id="SCr-os-b6M"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Topic Priority: 50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G2m-BK-JOc">
                                 <rect key="frame" x="39" y="360.5" width="152" height="28"/>
@@ -433,6 +437,8 @@
                     </view>
                     <connections>
                         <outlet property="AddTopicField" destination="uPS-4U-jDr" id="Osh-lk-iEK"/>
+                        <outlet property="PrioritySlider" destination="2tc-dI-f7B" id="W2r-nA-k12"/>
+                        <outlet property="priority_label" destination="G2m-BK-JOc" id="gOg-E3-R9v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7rd-y5-l69" userLabel="First Responder" sceneMemberID="firstResponder"/>
