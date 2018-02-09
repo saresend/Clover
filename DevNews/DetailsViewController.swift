@@ -11,8 +11,9 @@ import UIKit
 class DetailsViewController: UIViewController {
     @IBOutlet weak var TopicCollectionView: UICollectionView!
     
+    var should_reload = false
     
-    var topics = ["Random", "Keywords", "Which", "Should", "Be", "Terms", "Add Topic"]
+    var topics = [[String: String]]()
     var gradient_layer = CAGradientLayer()
 
     @IBAction func close_clicked(_ sender: Any) {
@@ -36,6 +37,24 @@ class DetailsViewController: UIViewController {
         TopicCollectionView.dataSource = self
         TopicCollectionView.delegate = self
         
+        /*
+         * Checks the case to ensure that we have an addTopic Button
+         */
+        if topics.count == 0 || topics[topics.count - 1]["title"] != "Add Topic" {
+            
+            topics.append(["title" : "Add Topic", "priority": "1.00000"])
+        }
+        
+        /*
+         * Add Observer for AddTopicNotification
+         */
+        NotificationCenter.default.addObserver(self, selector: #selector(topic_added), name: Notification.Name("AddedTopic"), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if should_reload {
+            self.TopicCollectionView.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,6 +62,16 @@ class DetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @objc func topic_added(notification: Notification) {
+        if let dict = notification.userInfo as? [String: String] {
+            print(dict)
+            topics.insert(dict,at:  0)
+            self.should_reload = true
+           // self.TopicCollectionView.reloadData()
+        }
+       // print(notification.userInfo)
+        //print("Notification Received")
+    }
 
     /*
     // MARK: - Navigation
@@ -72,7 +101,7 @@ extension DetailsViewController: UICollectionViewDataSource {
         
         
         
-        cell?.title_label.text = topics[indexPath.row]
+        cell?.title_label.text = topics[indexPath.row]["title"]
         print(topics[indexPath.row])
         print(indexPath)
         cell?.layer.cornerRadius = 10
@@ -84,7 +113,7 @@ extension DetailsViewController: UICollectionViewDataSource {
         cell?.clipsToBounds = false
         cell?.layer.backgroundColor = UIColor.clear.cgColor
         
-        if(topics[indexPath.row] == "Add Topic") {
+        if(topics[indexPath.row]["title"] == "Add Topic") {
             print("We here")
 
             cell?.backgroundView?.layer.opacity = 0.3
@@ -105,11 +134,15 @@ extension DetailsViewController : UICollectionViewDelegate {
         let cell = collectionView.cellForItem(at: indexPath) as! SettingsCollectionViewCell
         let keyword = cell.title_label.text!
         if(keyword != "Add Topic") {
-            let alert = UIAlertController(title: "Would you like to delete " + keyword + "?" , message: "", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Would you like to delete " + keyword + "?" , message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
                 switch action.style{
                 case .default:
                     print("default")
+                    //Here for Affirmation
+                    
+                    self.topics.remove(at: indexPath.row)
+                    self.TopicCollectionView.reloadData()
                     
                 case .cancel:
                     print("cancel")
@@ -123,9 +156,12 @@ extension DetailsViewController : UICollectionViewDelegate {
                 switch action.style{
                 case .default:
                     print("default")
+                  
                     
                 case .cancel:
                     print("cancel")
+                    
+                    //Here for Cancel
                     
                 case .destructive:
                     print("destructive")

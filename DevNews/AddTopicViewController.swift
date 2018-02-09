@@ -14,7 +14,7 @@ class AddTopicViewController: UIViewController {
     @IBOutlet weak var priority_label: UILabel!
     @IBOutlet weak var PrioritySlider: UISlider!
     var gradient_layer = CAGradientLayer()
-    var button : TransitionButton?  // please use Autolayout in real project
+    var button : TransitionButton?  
     @IBOutlet weak var AddTopicField: UITextField!
     @IBAction func Back_Tapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -28,6 +28,8 @@ class AddTopicViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector((tapBlurButton)))
+        self.view.addGestureRecognizer(tapGesture)
         
         /*
          * AddTopic Button
@@ -60,13 +62,24 @@ class AddTopicViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @objc func tapBlurButton() {
+       self.view.endEditing(true)
+    }
+    
     @objc func buttonAction(_ button: TransitionButton) {
         button.startAnimation() // 2: Then start the animation when the user tap the button
         let qualityOfServiceClass = DispatchQoS.QoSClass.background
+        let topic_name = self.AddTopicField.text
+        let topic_priority = PrioritySlider.value
         let backgroundQueue = DispatchQueue.global(qos: qualityOfServiceClass)
         backgroundQueue.async(execute: {
             
-            sleep(3) // 3: Do your networking task or background work here.
+            sleep(1) // 3: Do your networking task or background work here.
+            
+  
+            var notification = Notification.init(name: Notification.Name("AddedTopic"))
+            notification.userInfo = ["title" : topic_name ?? "", "priority" : String(topic_priority)]
+            NotificationCenter.default.post(notification)
             
             DispatchQueue.main.async(execute: { () -> Void in
                 // 4: Stop the animation, here you have three options for the `animationStyle` property:
