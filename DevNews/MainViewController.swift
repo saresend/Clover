@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
     
     var refreshController = UIRefreshControl()
     
+    @IBOutlet weak var back_button: UIButton!
     var gradient_layer = CAGradientLayer()
     
     override func viewDidLoad() {
@@ -22,6 +23,8 @@ class MainViewController: UIViewController {
         // Do any additional setup after loading the view.
         gradient_layer.colors = [ UIColor(hex: 0xF8A05A).cgColor, UIColor(hex: 0xF4736A).cgColor]
         
+        //Sets Back Button Color
+        back_button.imageView?.image = back_button.imageView?.image?.tinted(with: UIColor.white)
         
         gradient_layer.frame = self.view.bounds
         self.view.layer.insertSublayer(gradient_layer, at: 0)

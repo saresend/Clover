@@ -16,12 +16,13 @@ class DetailsViewController: UIViewController {
     var topics = [[String: String]]()
     var gradient_layer = CAGradientLayer()
 
+    @IBOutlet weak var back_button: UIButton!
     @IBAction func close_clicked(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        back_button.imageView?.image = back_button.imageView?.image?.tinted(with: UIColor.white)
         // Do any additional setup after loading the view.
         
         /*

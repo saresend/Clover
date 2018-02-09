@@ -19,6 +19,7 @@ class AddTopicViewController: UIViewController {
     @IBAction func Back_Tapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    @IBOutlet weak var back_button: UIButton!
     
     @IBAction func value_updated(_ sender: UISlider) {
         print(Int(100 * sender.value))
@@ -30,6 +31,9 @@ class AddTopicViewController: UIViewController {
         // Do any additional setup after loading the view.
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector((tapBlurButton)))
         self.view.addGestureRecognizer(tapGesture)
+        
+        //Sets X button Color to White
+        back_button.imageView?.image = back_button.imageView?.image?.tinted(with: UIColor.white)
         
         /*
          * AddTopic Button
