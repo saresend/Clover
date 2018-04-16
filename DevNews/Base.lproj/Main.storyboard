@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SCe-de-21O">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SCe-de-21O">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Avenir.ttc">
-            <string>Avenir-Black</string>
-            <string>Avenir-Book</string>
-            <string>Avenir-Heavy</string>
-        </array>
-        <array key="AvenirNext.ttc">
-            <string>AvenirNext-Heavy</string>
-            <string>AvenirNext-Medium</string>
-            <string>AvenirNext-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="AkS-4W-ecF">
@@ -131,7 +119,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="313" height="490"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some quirky title that goes on forever" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gsf-XH-ytc">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some quirky title that goes on forever" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gsf-XH-ytc">
                                                     <rect key="frame" x="9" y="246" width="294" height="68.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="294" id="2Ln-o5-NL6"/>
@@ -170,15 +158,6 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ferris" translatesAutoresizingMaskIntoConstraints="NO" id="18g-vV-aGn">
                                                     <rect key="frame" x="45" y="20" width="222" height="184"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A small sub explanation describing the article" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fm8-lo-K38">
-                                                    <rect key="frame" x="20" y="332" width="273" height="70"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="70" id="koY-tf-ZUX"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner" translatesAutoresizingMaskIntoConstraints="NO" id="BJJ-2c-hN6">
                                                     <rect key="frame" x="269" y="8" width="38" height="41"/>
                                                     <constraints>
@@ -198,10 +177,7 @@
                                             <constraint firstAttribute="trailing" secondItem="18g-vV-aGn" secondAttribute="trailing" constant="46" id="KyM-t1-nQg"/>
                                             <constraint firstItem="H3S-mk-gVf" firstAttribute="leading" secondItem="vMD-WB-ZJg" secondAttribute="leading" constant="9" id="L29-I1-OGF"/>
                                             <constraint firstItem="Gsf-XH-ytc" firstAttribute="leading" secondItem="vMD-WB-ZJg" secondAttribute="leading" constant="9" id="O2f-8Y-wIK"/>
-                                            <constraint firstItem="fm8-lo-K38" firstAttribute="top" secondItem="Gsf-XH-ytc" secondAttribute="bottom" constant="17.5" id="RH4-al-q7O"/>
-                                            <constraint firstAttribute="trailing" secondItem="fm8-lo-K38" secondAttribute="trailing" constant="20" id="aPV-jY-DQX"/>
                                             <constraint firstItem="BJJ-2c-hN6" firstAttribute="top" secondItem="vMD-WB-ZJg" secondAttribute="top" constant="8" id="cnr-Jm-nBG"/>
-                                            <constraint firstItem="fm8-lo-K38" firstAttribute="leading" secondItem="vMD-WB-ZJg" secondAttribute="leading" constant="20" id="dgu-yD-Avw"/>
                                             <constraint firstItem="H3S-mk-gVf" firstAttribute="centerY" secondItem="Spb-Oe-mQW" secondAttribute="centerY" constant="-1.5" id="e3m-Td-Klw"/>
                                             <constraint firstItem="18g-vV-aGn" firstAttribute="leading" secondItem="vMD-WB-ZJg" secondAttribute="leading" constant="45" id="iit-29-ADn"/>
                                             <constraint firstItem="Spb-Oe-mQW" firstAttribute="centerY" secondItem="2IA-Lf-gay" secondAttribute="centerY" constant="1.5" id="md6-Fd-WQN"/>
@@ -210,6 +186,7 @@
                                             <constraint firstAttribute="trailing" secondItem="2IA-Lf-gay" secondAttribute="trailing" constant="20" id="w4n-x6-56M"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="ScoreLabel" destination="H3S-mk-gVf" id="R9G-D9-3eA"/>
                                             <outlet property="TitleLabel" destination="Gsf-XH-ytc" id="kD9-wg-ZVX"/>
                                             <outlet property="heart_icon" destination="Spb-Oe-mQW" id="2Xd-pY-aVw"/>
                                             <outlet property="platform_banner" destination="BJJ-2c-hN6" id="nZE-Ge-D9F"/>

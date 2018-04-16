@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
     
     var refreshController = UIRefreshControl()
     
-    var elements: [[String: String]] = []
+    var elements: [[String: Any]] = []
     
     @IBOutlet weak var back_button: UIButton!
     var gradient_layer = CAGradientLayer()
@@ -41,22 +41,7 @@ class MainViewController: UIViewController {
         self.refreshController.addTarget(self, action: #selector(refresh_called), for: .valueChanged)
         
         // Read Data from Server
-        Alamofire.request("http://159.65.97.91:8080/get/articles/").responseJSON { response in
-            
-            if let json = response.result.value {
-              
-                if let json_elements = json as? [Any] {
-                    for element in json_elements {
-                        print(element)
-                        let parsed = element as? [String: String]
-                        print(parsed)
-                    }
-                    self.ArticleCollectionView.reloadData()
-                    self.ArticleCollectionView.reloadInputViews()
-                    
-                }
-            }
-        }
+       
         
     }
     
@@ -95,14 +80,15 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
         if(cell == nil) {
             cell = ArticleCollectionViewCell()
         }
-        let el = elements[indexPath.row] as? [String: String]
-        cell?.TitleLabel.text = el?["title"]
+        let el = elements[indexPath.row]
+        cell?.TitleLabel.text = el["title"] as? String
         cell?.layer.cornerRadius = 10
+        cell?.ScoreLabel.text = String(el["score"] as! Int)
         cell?.heart_icon.image = cell?.heart_icon.image?.tinted(with: UIColor.red)
         cell?.clipsToBounds = false
         cell?.layer.shadowOffset = CGSize(width: 2, height: 2)
         cell?.layer.shadowOpacity = 0.4
-        cell?.url = (el?["url"])!
+        cell?.url = el["url"] as! String
         cell?.layer.shadowColor = UIColor.black.cgColor;
         
         cell?.platform_banner.image = cell?.platform_banner.image?.tinted(with: UIColor.orange)

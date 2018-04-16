@@ -8,11 +8,14 @@
 
 import UIKit
 import TransitionButton
+import Alamofire
 
 class ViewController: UIViewController  {
     
     
     @IBOutlet weak var emailTextField: UITextField!
+    
+    var data: [[String: Any]] = []
     
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -84,24 +87,43 @@ class ViewController: UIViewController  {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? MainViewController {
+            dest.elements = self.data
+        }
+    }
     @objc func buttonAction(_ button: TransitionButton) {
         button.startAnimation() // 2: Then start the animation when the user tap the button
         let qualityOfServiceClass = DispatchQoS.QoSClass.background
         let backgroundQueue = DispatchQueue.global(qos: qualityOfServiceClass)
         backgroundQueue.async(execute: {
             
-            sleep(3) // 3: Do your networking task or background work here.
+            Alamofire.request("http://159.65.97.91:8080/get/articles/").responseJSON { response in
+                
+                if let json = response.result.value {
+                    
+                    if let json_elements = json as? [Any] {
+                        for element in json_elements {
+                            print(element)
+                            let parsed = element as! [String: Any]
+                            self.data.append(parsed)
+                        }
+                        
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            // 4: Stop the animation, here you have three options for the `animationStyle` property:
+                            // .expand: useful when the task has been compeletd successfully and you want to expand the button and transit to another view controller in the completion callback
+                            // .shake: when you want to reflect to the user that the task did not complete successfly
+                            // .normal
+                            button.stopAnimation(animationStyle: .expand, completion: {
+                                self.performSegue(withIdentifier: "toMain", sender: nil)
+                                
+                            })
+                        })
+                    }
+                }
+            }
             
-            DispatchQueue.main.async(execute: { () -> Void in
-                // 4: Stop the animation, here you have three options for the `animationStyle` property:
-                // .expand: useful when the task has been compeletd successfully and you want to expand the button and transit to another view controller in the completion callback
-                // .shake: when you want to reflect to the user that the task did not complete successfly
-                // .normal
-                button.stopAnimation(animationStyle: .expand, completion: {
-                    self.performSegue(withIdentifier: "toMain", sender: nil)
-                   
-                })
-            })
+            
         })
     }
 

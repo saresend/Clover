@@ -10,6 +10,7 @@ import UIKit
 
 class ArticleCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var ScoreLabel: UILabel!
     var url = "http://medium.com"
     @IBOutlet weak var heart_icon: UIImageView!
     @IBOutlet weak var TitleLabel: UILabel!
