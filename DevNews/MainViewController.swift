@@ -7,12 +7,14 @@
 //
 
 import UIKit
-
+import Alamofire
 class MainViewController: UIViewController {
     
     @IBOutlet weak var ArticleCollectionView: UICollectionView!
     
     var refreshController = UIRefreshControl()
+    
+    var elements: [[String: String]] = []
     
     @IBOutlet weak var back_button: UIButton!
     var gradient_layer = CAGradientLayer()
@@ -38,14 +40,29 @@ class MainViewController: UIViewController {
         ArticleCollectionView.alwaysBounceVertical = true
         self.refreshController.addTarget(self, action: #selector(refresh_called), for: .valueChanged)
         
+        // Read Data from Server
+        Alamofire.request("http://159.65.97.91:8080/get/articles/").responseJSON { response in
+            
+            if let json = response.result.value {
+              
+                if let json_elements = json as? [Any] {
+                    for element in json_elements {
+                        print(element)
+                        let parsed = element as? [String: String]
+                        print(parsed)
+                    }
+                    self.ArticleCollectionView.reloadData()
+                    self.ArticleCollectionView.reloadInputViews()
+                    
+                }
+            }
+        }
+        
     }
     
     @objc func refresh_called() {
         refreshController.beginRefreshing()
-    
-        for _ in 0...100000  {
-            //
-        }
+        self.reloadInputViews()
         refreshController.endRefreshing()
     }
 
@@ -70,7 +87,7 @@ class MainViewController: UIViewController {
 }
 extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return elements.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -78,13 +95,14 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
         if(cell == nil) {
             cell = ArticleCollectionViewCell()
         }
-        cell?.TitleLabel.text = "Some quirky title that goes on forever"
+        let el = elements[indexPath.row] as? [String: String]
+        cell?.TitleLabel.text = el?["title"]
         cell?.layer.cornerRadius = 10
         cell?.heart_icon.image = cell?.heart_icon.image?.tinted(with: UIColor.red)
         cell?.clipsToBounds = false
         cell?.layer.shadowOffset = CGSize(width: 2, height: 2)
         cell?.layer.shadowOpacity = 0.4
-
+        cell?.url = (el?["url"])!
         cell?.layer.shadowColor = UIColor.black.cgColor;
         
         cell?.platform_banner.image = cell?.platform_banner.image?.tinted(with: UIColor.orange)

@@ -7,6 +7,7 @@ target 'DevNews' do
 
   # Pods for DevNews
   pod 'TransitionButton'
+  pod 'Alamofire', '~> 4.7'
 
   target 'DevNewsUITests' do
     inherit! :search_paths
