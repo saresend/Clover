@@ -13,12 +13,11 @@ import Alamofire
 class ViewController: UIViewController  {
     
     
-    @IBOutlet weak var emailTextField: UITextField!
+   
     
     var data: [[String: Any]] = []
     
-    @IBOutlet weak var passwordTextField: UITextField!
-    
+   
     var gradient_layer =  CAGradientLayer()
     var button : TransitionButton?  // please use Autolayout in real project
    
@@ -29,10 +28,10 @@ class ViewController: UIViewController  {
         /*
          * Super cool button initialization which I was too lazy to do myself
          */
-        button = TransitionButton(frame: CGRect(x: passwordTextField.frame.minX , y: passwordTextField.frame.maxY + 80, width: passwordTextField.frame.width, height: 60))
+        button = TransitionButton(frame: CGRect(x: self.view.frame.minX + 30 , y: (self.view.frame.height / 2) + 30, width: self.view.frame.width - 60, height: 60))
         self.view.addSubview(button!)
         button!.backgroundColor = UIColor(hex: 0xe69884)
-        button!.setTitle("Log In or Sign Up", for: .normal)
+        button!.setTitle("Load Today's Articles", for: .normal)
         button!.cornerRadius = 20
         button!.spinnerColor = .white
         button!.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
@@ -58,23 +57,7 @@ class ViewController: UIViewController  {
         /*
          * Below is initialization logic for the borders of the email and password text fields
          */
-        let bottomLine = CALayer()
-        
-        bottomLine.frame = CGRect(x: 0.0, y: emailTextField.frame.height - 1, width: emailTextField.frame.width, height: 1.0)
-        bottomLine.backgroundColor = UIColor.white.cgColor
-        emailTextField.borderStyle = UITextBorderStyle.none
-        emailTextField.layer.addSublayer(bottomLine)
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
-                                                                  attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
-        let bottomLine2 = CALayer()
-        
-        bottomLine2.frame = CGRect(x: 0.0, y: passwordTextField.frame.height - 1, width: passwordTextField.frame.width, height: 1.0)
-        bottomLine2.backgroundColor = UIColor.white.cgColor
-        passwordTextField.borderStyle = UITextBorderStyle.none
-        passwordTextField.layer.addSublayer(bottomLine2)
-        
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
-                                                                      attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+       
     }
     
     // Trying to resign keyboard on tap

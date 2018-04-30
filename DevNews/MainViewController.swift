@@ -91,9 +91,10 @@ extension MainViewController : UICollectionViewDelegate, UICollectionViewDataSou
         cell?.url = el["url"] as! String
         cell?.layer.shadowColor = UIColor.black.cgColor;
         
-        cell?.platform_banner.image = cell?.platform_banner.image?.tinted(with: UIColor.orange)
+        
         return cell!
     }
+   
 }
 extension UIImage {
     func tinted(with color: UIColor) -> UIImage? {
